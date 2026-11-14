@@ -26,6 +26,18 @@ python scripts/validate.py --strict
 5. 跑 `build_index.py` 与 `validate.py --strict`。
 6. 开 PR 填模板，等 owner 评审，不要自己合并。
 
+## 会话式 intake（拿到 URL / 文档 / 表格时）
+
+```bash
+python scripts/intake.py add <url或文件>... [--title T]   # 快照到 sources/，草稿进 inbox/
+python scripts/intake.py status                          # 查看四态判定
+python scripts/intake.py promote <inbox_id> --category C --owner O [--title --tags ...]
+python scripts/intake.py pr <inbox_id>                   # 建分支、提交、推送、给 PR 链接
+```
+
+- **抽取成功不等于准入**：只有 `digested` 状态可 promote；`needs-review` / `unsupported` / `ignored` 转交用户处理。
+- `pr` 只推送 `kb/intake-*` 分支，不合并、不碰 main。URL 抓取失败（网络/代理）落 `needs-review`，可稍后重试。
+
 ## 禁止事项
 
 - 禁止直接 push 到 main，禁止自行 merge PR。

@@ -9,6 +9,10 @@
 | `python scripts/validate.py --strict` | 跑四道门禁，任一 error 阻断合并 | 有 error 1 |
 | `python scripts/validate.py --check-links` | 额外 HEAD 检查外链，只告警不阻断 | 0 |
 | `python scripts/validate.py --freshness-report` | 输出已过 `stale_after` 的 active 文件表 | 0 |
+| `python scripts/intake.py add <输入>...` | 原文快照进 `sources/`，归一化草稿进 `inbox/`，四态判定 | needs-review/unsupported 1 |
+| `python scripts/intake.py status` | 列出 inbox 条目与状态 | 0 |
+| `python scripts/intake.py promote <id> --category C --owner O` | 提升 digested 条目为 canonical 草稿并重建索引、跑门禁 | 门禁失败 1 |
+| `python scripts/intake.py pr <id>` | 为 promoted 条目建 `kb/intake-*` 分支、提交、推送 | 失败 1 |
 
 ## 四道门禁
 
@@ -31,6 +35,15 @@
 
 ## 扩展点
 
-- 接入会话式 intake 时，在 `inbox/` 里生成草稿，调用 `build_index.py --check` 判断草稿一旦入库是否会破坏索引。
+- ~~接入会话式 intake 时，在 `inbox/` 里生成草稿~~ 已实现：`scripts/intake.py`，见命令表。
 - 接入向量检索时，用 `manifest.json` 的 `sha256` 做增量判断，只重建正文变化的文件；并在回答里带上来源的 `canonical_id` 与 commit SHA。
 - `--check-links` 默认关闭，避免第三方站点抖动把 CI 变红；需要时单独开一条定时任务。
+
+## intake 设计要点
+
+- **四态判定**（digested / needs-review / ignored / unsupported）写在 `inbox/<id>/metadata.json`；`metadata.json` 是 intake 状态的单一事实源。
+- 原文按字节 SHA-256 快照到 `sources/YYYYMMDD-<slug>.<ext>`，与已有快照逐字节相同则复用不重存。
+- 归一化支持：Markdown（保留正文）、HTML（提取标题/层级/链接/列表）、CSV/TSV（表格留原文、Markdown 只做前 50 行预览）、JSON、TXT；PDF/Office/图片一律 `unsupported`——视为编译产物，先转 Markdown/CSV。
+- `promote` 生成的 frontmatter `source_url` 自动指向 URL 或 `sources/` 快照，`retrieved_at` 用抓取时刻，`status` 固定 `draft`，`stale_after` 默认 180 天。
+- `promote` 内部自动跑 `build_index.py` 与 `validate.py --strict`；门禁不过会退回 `needs-review` 并把错误写进 `metadata.json`。
+- URL 抓取走 `urllib`（受本机代理环境变量影响）；失败不 crash，落 `needs-review` 供稍后重试。
