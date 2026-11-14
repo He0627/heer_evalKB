@@ -1,0 +1,12 @@
+# 默认 owner：所有变更都需要仓库所有者评审。
+* @He0627
+
+# 受保护路径：契约、脚本、CI、评测基线与 Agent 入口，禁止 Agent 自行修改。
+/knowledge/schema.json @He0627
+/knowledge/index.md @He0627
+/knowledge/manifest.json @He0627
+/scripts/ @He0627
+/.github/ @He0627
+/evals/ @He0627
+/AGENTS.md @He0627
+/CONTRIBUTING.md @He0627

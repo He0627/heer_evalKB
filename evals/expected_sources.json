@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "description": "允许作为证据引用的 canonical 文件白名单。新增知识文件后，只有登记在此才可用于 expected_sources。",
+  "sources": [
+    "knowledge/evaluation/golden-set-and-hit-rate.md",
+    "knowledge/evaluation/grader-rubric.md",
+    "knowledge/methods/frontmatter-contract.md"
+  ]
+}

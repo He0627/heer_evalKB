@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "description": "canonical 知识文件的 frontmatter 契约。校验脚本读取本文件，改契约即改门禁。",
+  "canonical_root": "knowledge",
+  "required": [
+    "type",
+    "title",
+    "description",
+    "source_url",
+    "retrieved_at",
+    "owner",
+    "status",
+    "stale_after"
+  ],
+  "optional": [
+    "canonical_id",
+    "tags",
+    "supersedes",
+    "verified",
+    "verified_by",
+    "pii",
+    "acl",
+    "license",
+    "generated"
+  ],
+  "enums": {
+    "type": [
+      "Evaluation Rubric",
+      "Metric Definition",
+      "Method",
+      "Tool Note",
+      "Policy",
+      "Glossary"
+    ],
+    "status": ["draft", "active", "deprecated", "superseded"],
+    "pii": ["none", "redacted", "contains_sensitive"],
+    "acl": ["public", "internal", "restricted"]
+  },
+  "rules": {
+    "retrieved_at": "ISO 8601 日期或日期时间，例如 2026-11-14 或 2026-11-14T10:00:00Z",
+    "stale_after": "YYYY-MM-DD，超过该日期的 active 文件会出现在 freshness 报告",
+    "source_url": "http(s) URL，或以 sources/ 开头的仓库内原文快照路径",
+    "canonical_id": "相对 knowledge/ 的路径，去掉 .md 后缀；缺省时由脚本按路径推导",
+    "generated_files": ["knowledge/index.md", "knowledge/manifest.json"],
+    "single_h1": "每个文件恰好一个 H1，标题层级不跳级，H2 标题互不重复",
+    "self_contained_sections": "每个 H2 章节脱离上下文仍能独立成立",
+    "no_secrets": "禁止提交 token、私钥等凭据；校验脚本会扫描"
+  }
+}

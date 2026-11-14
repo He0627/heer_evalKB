@@ -1,0 +1,49 @@
+name: 知识准入申请
+description: 提交一条 URL / 文档 / 表格，申请按仓库结构入库
+title: "[intake] "
+labels: ["intake"]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: 来源
+      description: 原始 URL，或已放入 sources/ 的文件路径
+      placeholder: https://example.com/docs/...
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 资料类型
+      options:
+        - 网页 / URL
+        - PDF / Word / PPT
+        - 表格 (CSV / XLSX)
+        - 纯文本 / Markdown
+        - 其他
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: 建议归入的知识分类
+      options:
+        - evaluation
+        - methods
+        - 新建分类（在补充说明里写明）
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: 为什么该入库
+      description: 哪个高频问题会用到它？不入库会怎样？
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 补充说明
+      description: 已知冲突、版权/许可、是否需要人工复核
+    validations:
+      required: false

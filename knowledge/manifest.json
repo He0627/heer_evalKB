@@ -1,0 +1,33 @@
+{
+  "count": 3,
+  "files": [
+    {
+      "canonical_id": "evaluation/golden-set-and-hit-rate",
+      "description": "检索评测基线的最小组成、hit rate@k 定义、以及除命中率外必须检查的行为",
+      "path": "knowledge/evaluation/golden-set-and-hit-rate.md",
+      "sha256": "ec25fe9340481bcac690a9e46383c22683ea7ee3c018c293119322b71e50940f",
+      "stale_after": "2027-05-14",
+      "status": "active",
+      "title": "金标问题集与 hit rate@k"
+    },
+    {
+      "canonical_id": "evaluation/grader-rubric",
+      "description": "写 grader 评分标准时的触发描述、gotchas、指令强度与输出模板四条经验",
+      "path": "knowledge/evaluation/grader-rubric.md",
+      "sha256": "21c7396d588894d8023a3437311bc23b0e4f27493dd1d05b43642c32a15c07c4",
+      "stale_after": "2027-05-14",
+      "status": "active",
+      "title": "LLM-as-Judge rubric 的设计要点"
+    },
+    {
+      "canonical_id": "methods/frontmatter-contract",
+      "description": "一概念一文件、必填 type、状态与时效字段如何让废弃文档进不了检索候选集",
+      "path": "knowledge/methods/frontmatter-contract.md",
+      "sha256": "7898539b17b42dfdb935d13e7d74e1ab7de2e190050e2aef1ddb39876016e9ea",
+      "stale_after": "2027-05-14",
+      "status": "active",
+      "title": "用 frontmatter 做检索前的元数据过滤"
+    }
+  ],
+  "version": 1
+}

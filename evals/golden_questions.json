@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "description": "检索评测基线。问题应来自真实提问；refusal_expected 为 true 时 expected_sources 必须为空。",
+  "questions": [
+    {"id": "Q001", "category": "retrieval-eval", "question": "金标问题集最少应该包含多少条问题？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q002", "category": "retrieval-eval", "question": "金标问题集里的每一条问题要记录哪些字段？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q003", "category": "retrieval-eval", "question": "为什么不能按文档目录反推金标问题？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q004", "category": "retrieval-eval", "question": "hit rate@k 的分母和分子分别是什么？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q005", "category": "retrieval-eval", "question": "hit rate@k 通常取 k 等于多少？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q006", "category": "retrieval-eval", "question": "拒答类问题要不要计入命中率？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q007", "category": "retrieval-eval", "question": "除了命中率，回归门禁还必须检查哪两类行为？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q008", "category": "retrieval-eval", "question": "哪些变更发生后必须重跑评测基线？", "expected_sources": ["knowledge/evaluation/golden-set-and-hit-rate.md"], "refusal_expected": false},
+    {"id": "Q009", "category": "grader", "question": "grader 的描述字段应该写触发条件还是内容摘要？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q010", "category": "grader", "question": "为什么描述写成摘要会降低路由准确率？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q011", "category": "grader", "question": "评分标准里 gotchas 一节应该收集什么内容？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q012", "category": "grader", "question": "人工纠正 grader 误判后应该把这处纠正写到哪里？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q013", "category": "grader", "question": "什么样的任务适合给 grader 精确步骤而不是目标？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q014", "category": "grader", "question": "指令强度按什么分档？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q015", "category": "grader", "question": "存在多种可行做法时 rubric 该给菜单还是默认方案？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q016", "category": "grader", "question": "较长的输出模板应该放在哪里以节省上下文？", "expected_sources": ["knowledge/evaluation/grader-rubric.md"], "refusal_expected": false},
+    {"id": "Q017", "category": "structure", "question": "为什么纯向量检索无法判断一条结论是否仍然有效？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q018", "category": "structure", "question": "一概念一文件时，概念 ID 由什么决定？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q019", "category": "structure", "question": "OKF v0.1 强制每个概念文档必须有哪个字段？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q020", "category": "structure", "question": "OKF v0.2 增加了哪些可选的信任信号？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q021", "category": "structure", "question": "哪些文档应该在进入候选集之前被排除？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q022", "category": "structure", "question": "元数据预过滤加向量检索的混合臂是怎么工作的？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q023", "category": "structure", "question": "被替代的旧版文档应该删除还是保留？", "expected_sources": ["knowledge/methods/frontmatter-contract.md"], "refusal_expected": false},
+    {"id": "Q024", "category": "refusal", "question": "我们内部 2025 年 Q3 的 grader 通过率具体是多少？", "expected_sources": [], "refusal_expected": true},
+    {"id": "Q025", "category": "refusal", "question": "知识库里有没有关于未公开模型 A/B 测试结论的记录？", "expected_sources": [], "refusal_expected": true}
+  ]
+}
