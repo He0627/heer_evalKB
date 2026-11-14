@@ -55,6 +55,18 @@ YAML 支持子集：标量、引号字符串、`[a, b]` 行内列表、`- item` 
 - 本地先跑 `python scripts/build_index.py` 和 `python scripts/validate.py --strict`；CI 会再跑一次。
 - required checks 全绿 + owner 批准后才能合并；**默认不自动合并**。
 
+## 一次性仓库设置（需管理员）
+
+**CI workflow 文件存在 ≠ 门禁生效。** 部署了校验但没有把它设为 required check，等于演戏：CI 红了仍然可以合并。请管理员在 GitHub 上完成：
+
+1. `Settings → Branches → Add branch ruleset`（或 Branch protection rule），目标分支 `main`。
+2. 勾选 `Require a pull request before merging`，至少 1 个审批；结合 `CODEOWNERS` 勾选 `Require review from Code Owners`。
+3. 勾选 `Require status checks to pass`，添加来自 `validate` job 的两个检查：`Verify generated files are current` 与 `Validate with strict gates`。
+4. 勾选 `Require conversation resolution`，禁止 force push 与分支删除。
+5. 验收：故意提交一个漏填 `source_url` 的测试 PR，确认两个检查变红、Merge 按钮被禁用，然后关闭该 PR。
+
+`freshness.yml` 是每周定时任务，只产出报告与 run summary，不设门禁，也不会自动改 main。
+
 ## 分支命名
 
 `kb/<topic>`，基于最新 main 创建。合并后清理分支。
